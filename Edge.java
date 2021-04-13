@@ -1,3 +1,13 @@
+/**
+ * // --== CS400 File Header Information ==--
+ * // Name: Alexander Dudin
+ * // Email: dudin@wisc.edu
+ * // Team: Red
+ * // Group: GG
+ * // TA: Surabhi
+ * // Lecturer: Gary Dahl
+ * // Notes to Grader: n/a
+ */
 public class Edge implements Comparable<Edge> {
     public String target;
     public int weight;
