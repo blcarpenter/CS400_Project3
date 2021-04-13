@@ -44,14 +44,13 @@ public class Backend {
         for (Destinations d : this.locList) {
             this.locationGraph.insertVertex(d.getName());
         }
-/**
+
         // Store edges
         for (Destinations d : this.locList) {
             for (Edge e : d.destinationsLeaving()) {
                 this.locationGraph.insertEdge(d.getName(), e.target, e.weight);
             }
         }
-**/
 
     }
 
