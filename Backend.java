@@ -6,6 +6,7 @@
 // Lecturer: Gary
 // Notes to Grader:
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -18,18 +19,18 @@ import java.util.ArrayList;
 public class Backend {
 
     private CS400Graph<String> locationGraph;
-    private ArrayList<DestinationsInterface> locList;
-
+    public ArrayList<Destinations> locList;
+    
     // Constructor that stores location data obtained from command line arguments
     // in a CS400Graph
-    Backend(String[] args) {
+    Backend(File file) {
 
         this.locationGraph = new CS400Graph<>();
         CampusMapDataReader cmdr = new CampusMapDataReader();
         FileReader r = null;
 
         try {
-            r = new FileReader(args[0]);
+            r = new FileReader(file);
         }  catch (Exception e){
             System.out.println("Error: file could not be read");
         }
@@ -40,12 +41,12 @@ public class Backend {
         }
 
         // Store vertices
-        for (DestinationsInterface d : this.locList) {
+        for (Destinations d : this.locList) {
             this.locationGraph.insertVertex(d.getName());
         }
 
         // Store edges
-        for (DestinationsInterface d : this.locList) {
+        for (Destinations d : this.locList) {
             for (Edge e : d.destinationsLeaving()) {
                 this.locationGraph.insertEdge(d.getName(), e.target, e.weight);
             }
@@ -75,5 +76,25 @@ public class Backend {
 
         return route;
     }
-
+    
+    public int getCost (String start, String end) {
+      Integer cost = this.locationGraph.getPathCost(start, end);
+      return cost;  
+    }
+    
+    public ArrayList<String> adjacentNodes(String data) {
+      ArrayList<String> list = new ArrayList<String>();
+      Destinations currentNode = null;
+      for(Destinations x: locList) {
+        if (x.getName().equals(data)) {
+          currentNode = x;
+        }
+      }
+      if (currentNode!=null) {
+        for (Edge x : currentNode.destinationsLeaving()) {
+          list.add(x.target);
+        }
+      } 
+     return list; 
+   }
 }
