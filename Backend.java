@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * The Backend class stores location data provided in the command line arguments
  * in a CS400Graph and calculates the shortest path between two locations using
- * the shortestPath method of the CS400Graph
+ * the shortestPath method of the CS400Graph class
  */
 public class Backend {
 
