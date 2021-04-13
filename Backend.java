@@ -26,7 +26,7 @@ public class Backend {
 
         this.locationGraph = new CS400Graph<>();
         CampusMapDataReader cmdr = new CampusMapDataReader();
-        Reader r = null;
+        FileReader r = null;
 
         try {
             r = new FileReader(args[0]);
@@ -34,18 +34,18 @@ public class Backend {
             System.out.println("Error: file could not be read");
         }
         try {
-            this.locList = cmdr.readDataSet(r);
+            this.locList = (ArrayList)cmdr.readDataSet(r);
         } catch (Exception e) {
-            System.out.println("Error: locations could not be stored")
+            System.out.println("Error: locations could not be stored");
         }
 
         // Store vertices
-        for (Destinations d : this.loclist.get(0)) {
+        for (DestinationsInterface d : this.locList) {
             this.locationGraph.insertVertex(d.getName());
         }
 
         // Store edges
-        for (Destinations d : this.loclist.get(0)) {
+        for (DestinationsInterface d : this.locList) {
             for (Edge e : d.destinationsLeaving()) {
                 this.locationGraph.insertEdge(d.getName(), e.target, e.weight);
             }
@@ -58,7 +58,7 @@ public class Backend {
     public String[] getRoute(String start, String end) {
 
         String[] route = new String[50];
-        ArrayList<String> list = this.locationGraph.shortestPath(start, end);
+        ArrayList<String> list = (ArrayList)this.locationGraph.shortestPath(start, end);
 
         int count = 0;
 
@@ -70,8 +70,8 @@ public class Backend {
         // filler line for display purposes (optional)
         route[count++] = "";
 
-        route[count] = "Total path cost: ";
-        route[count].append(this.locationGraph.getPathCost(start, end).toString());
+        Integer cost = this.locationGraph.getPathCost(start, end);
+        route[count] = "Total path cost: " + cost.toString();
 
         return route;
     }
