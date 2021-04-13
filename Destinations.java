@@ -34,6 +34,12 @@ public class Destinations implements DestinationsInterface {
     public List<Edge> destinationsLeaving() {
        return destinationsLeaving;
     }
+
+    @Override
+    public void setDestinationsLeaving(List<Edge> destinationsLeaving) {
+        this.destinationsLeaving = destinationsLeaving;
+    }
+
     @Override
     public String toString(){
         return name+"\n";

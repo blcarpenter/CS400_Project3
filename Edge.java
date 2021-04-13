@@ -17,6 +17,9 @@ public class Edge implements Comparable<Edge> {
         this.weight = weight;
     }
 
+    public Edge() {
+    }
+
     @Override
     public int compareTo(Edge edge) {
         if(this.weight> edge.weight){
