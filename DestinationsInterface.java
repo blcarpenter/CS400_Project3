@@ -11,9 +11,11 @@
 import java.util.List;
 
 public interface DestinationsInterface {
-        List<Edge> destinationsLeaving =null;
+        public  List<Edge> destinationsLeaving=null;
+        String name=null;
         public String getName();
         public List<Edge> destinationsLeaving();
+        public void setDestinationsLeaving(List<Edge> destinationsLeaving);
 
 
 
