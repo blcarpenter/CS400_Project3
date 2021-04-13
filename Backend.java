@@ -1,7 +1,20 @@
+// --== CS400 File Header Information ==--
+// Name: Ben Carpenter
+// Email: blcarpenter@wisc.edu
+// Team: GG
+// TA: Surabhi
+// Lecturer: Gary
+// Notes to Grader:
+
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
 
+/**
+ * The Backend class stores location data provided in the command line arguments
+ * in a CS400Graph and calculates the shortest path between two locations using
+ * the shortestPath method of the CS400Graph
+ */
 public class Backend {
 
     private CS400Graph<String> locationGraph;
@@ -62,5 +75,5 @@ public class Backend {
 
         return route;
     }
-    
+
 }
