@@ -21,7 +21,7 @@ public class FrontendDeveloperTests {
    * from the frontend class
    */
   public void FrontendTest1() {
-    File file = new File("src/Madisonmap.csv");
+    File file = new File("Madisonmap.csv");
     Backend backend = null;
     try {
       backend = new Backend(String[] args);
