@@ -20,8 +20,13 @@ public class Frontend {
     public static void main(String[] args) throws IllegalArgumentException, NoSuchElementException {
 
         File file = new File("src/Madisonmap.csv");
+        Backend backend = null;
+        try {
+            backend = new Backend(args);
+        }catch (Exception e){
+            backend = new Backend(file);
+        }
 
-        Backend backend = new Backend(args);
         int menuInput = 0;
         int numLocations = 0;
         int start = 0;

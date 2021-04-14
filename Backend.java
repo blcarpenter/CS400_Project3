@@ -54,6 +54,35 @@ public class Backend {
         }
 
     }
+    Backend(File f) {
+
+        this.locationGraph = new CS400Graph<>();
+        CampusMapDataReader cmdr = new CampusMapDataReader();
+        FileReader read = null;
+        try {
+            read = new FileReader(f);
+        }catch (Exception e){
+            System.out.println("foo");
+        }
+        try {
+            this.locList = (ArrayList)cmdr.readDataSet(read);
+        } catch (Exception e) {
+            System.out.println("Error: locations could not be stored");
+        }
+
+        // Store vertices
+        for (Destinations d : this.locList) {
+            this.locationGraph.insertVertex(d.getName());
+        }
+
+        // Store edges
+        for (Destinations d : this.locList) {
+            for (Edge e : d.destinationsLeaving()) {
+                this.locationGraph.insertEdge(d.getName(), e.target, e.weight);
+            }
+        }
+
+    }
 
     // Method that returns a String array representing the path from the starting
     // location to the destination, with the total cost stored in the final element
