@@ -21,7 +21,7 @@ public class Frontend {
 
         File file = new File("src/Madisonmap.csv");
 
-        Backend backend = new Backend(file);
+        Backend backend = new Backend(args);
         int menuInput = 0;
         int numLocations = 0;
         int start = 0;

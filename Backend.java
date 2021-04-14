@@ -25,19 +25,18 @@ public class Backend {
 
     // Constructor that stores location data obtained from command line arguments
     // in a CS400Graph
-    Backend(File file) {
+    Backend(String[] args) {
 
         this.locationGraph = new CS400Graph<>();
         CampusMapDataReader cmdr = new CampusMapDataReader();
-        FileReader r = null;
-
+        FileReader read = null;
         try {
-            r = new FileReader(file);
-        }  catch (Exception e){
-            System.out.println("Error: file could not be read");
+            read = new FileReader(args[0]);
+        }catch (Exception e){
+            System.out.println("foo");
         }
         try {
-            this.locList = (ArrayList)cmdr.readDataSet(r);
+            this.locList = (ArrayList)cmdr.readDataSet(read);
         } catch (Exception e) {
             System.out.println("Error: locations could not be stored");
         }
@@ -71,8 +70,7 @@ public class Backend {
         }
 
         // filler line for display purposes (optional)
-        route[count++] = "";
-        String[] res = new String[count+1];
+        String[] res = new String[count];
         int i=0;
         for(String s:route){
             if(s!= null){
