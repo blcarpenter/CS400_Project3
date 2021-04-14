@@ -25,7 +25,7 @@ Madisonmap.csv: spent time compiling all of the street data within our given are
  
 Additional Contributions: Helped the backend figure out a bug 
 -------------------------
-I helped the backend debug his program 
+I helped the backend debug his program. methods include get pathcost,and adjsentnodes
 
 Signature:Alexander Dudin
 ----------
