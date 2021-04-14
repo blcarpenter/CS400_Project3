@@ -14,29 +14,57 @@ import java.util.Scanner;
 
 public class Frontend {
   
-  public static String[] getRoute(Backend backend, String start, String end) {
+  /**
+   * This method returns the shortest path from the start to the destination
+   * @param backend an instance of the backend
+   * @param start the starting vertex
+   * @param end the destination vertex
+   * @return returns the shortest path from the start to the destination
+   */
+  public static String getRoute(Backend backend, String start, String end) {
     return backend.getRoute(start, end);
   }
   
+  /**
+   * This method gets the cost of the shortest path from the start to the destination
+   * @param backend an instance of the backend
+   * @param start the starting vertex
+   * @param end the destination vertex
+   * @return returns the cost of the shortest path from the start to the destination
+   */
   public static int getCost(Backend backend, String start, String end) {
     return backend.getCost(start, end);
   }
   
+  /**
+   * Returns an ArrayList containing all the adjacent vertices to the current vertex
+   * @param backend an instance of the backend
+   * @param data the vertex from which the adjacent vertices will be found
+   * @return an ArrayList containing all the adjacent vertices to current vertex
+   */
   public static ArrayList<String> adjacentNodes(Backend backend, String data) {
     return backend.adjacentNodes(data);
   }
-
+  
+  /**
+   * Main method which runs the UI
+   * @param args String[] args
+   * @throws IllegalArgumentException if an illegal argument is provided
+   * @throws NoSuchElementException if the elements do not exist
+   */
   public static void main(String[] args) throws IllegalArgumentException, NoSuchElementException {
 
+    // loads the file and creates the instance of the backend
     
-        File file = new File("src/Madisonmap.csv");
-        Backend backend = null;
-        try {
-            backend = new Backend(args);
-        }catch (Exception e){
-            backend = new Backend(file);
-        }
-
+    File file = new File("src/Madisonmap.csv");
+    Backend backend = null;
+    try {
+      backend = new Backend(args);
+    }catch (Exception e){
+      backend = new Backend(file);
+    }
+    
+    // declares and initializes relevant variables 
     int menuInput = 0;
     int numLocations = 0;
     int start = 0;
@@ -44,6 +72,7 @@ public class Frontend {
     String strStart ="";
     String strEnd ="";
 
+    // first loop of the UI, collects the starting location choice from the user
     do {
       System.out.println("Welcome to the Campus Map, Please select the starting location:");
       System.out.println("[1] Buffalo wild wings");
@@ -93,7 +122,8 @@ public class Frontend {
       }
     }  while(menuInput != 30 && numLocations == 0);
 
-  
+    
+    // second loop of the UI, collects the destination choice from the user
    do {
      System.out.println("Welcome to the Campus Map, Please select the starting location:");
      System.out.println("[1] Buffalo wild wings");
@@ -146,10 +176,13 @@ public class Frontend {
     } while (menuInput != 30 && numLocations == 1);
  
 
+   // converts the integer choice from the user to the String representation of the
+   // location so that the relevant methods with String parameters in calculating the
+   // shortest path can be called.
    if (start == 1)
      strStart = "Buffalo wild wings";
    if (start == 2)
-     strStart = "campus and randell ";
+     strStart = "campus and randell";
    if (start == 3)
      strStart = "Computer science building";
    if (start == 4)
@@ -161,7 +194,7 @@ public class Frontend {
    if (start == 7)
      strStart = "Lucky's";
    if (start == 8)
-     strStart = "N. charter and campus  ";
+     strStart = "N. charter and campus";
    if (start == 9)
      strStart = "N. charter and Spring";
    if (start == 10)
@@ -173,11 +206,11 @@ public class Frontend {
    if (start == 13)
      strStart = "N. orchard and Regent";
    if (start == 14)
-     strStart = "N. orchard and spring ";
+     strStart = "N. orchard and spring";
    if (start == 15)
      strStart = "N.brooks and W. Dayton";
    if (start == 16)
-     strStart = "N.mills and campus ";
+     strStart = "N.mills and campus";
    if (start == 17)
      strStart = "N.mills and Spring";
    if (start == 18)
@@ -185,7 +218,7 @@ public class Frontend {
    if (start == 19)
      strStart = "Nicholas rec center";
    if (start == 20)
-     strStart = "Ogg ";
+     strStart = "Ogg";
    if (start == 21)
      strStart = "Qudoba";
    if (start == 22)
@@ -208,7 +241,7 @@ public class Frontend {
    if (end == 1)
      strEnd = "Buffalo wild wings";
    if (end == 2)
-     strEnd = "campus and randell ";
+     strEnd = "campus and randell";
    if (end == 3)
      strEnd = "Computer science building";
    if (end == 4)
@@ -220,7 +253,7 @@ public class Frontend {
    if (end == 7)
      strEnd = "Lucky's";
    if (end == 8)
-     strEnd = "N. charter and campus  ";
+     strEnd = "N. charter and campus";
    if (end == 9)
      strEnd = "N. charter and Spring";
    if (end == 10)
@@ -232,11 +265,11 @@ public class Frontend {
    if (end == 13)
      strEnd = "N. orchard and Regent";
    if (end == 14)
-     strEnd = "N. orchard and spring ";
+     strEnd = "N. orchard and spring";
    if (end == 15)
      strEnd = "N.brooks and W. Dayton";
    if (end == 16)
-     strEnd = "N.mills and campus ";
+     strEnd = "N.mills and campus";
    if (end == 17)
      strEnd = "N.mills and Spring";
    if (end == 18)
@@ -244,7 +277,7 @@ public class Frontend {
    if (end == 19)
      strEnd = "Nicholas rec center";
    if (end == 20)
-     strEnd = "Ogg ";
+     strEnd = "Ogg";
    if (end == 21)
      strEnd = "Qudoba";
    if (end == 22)
@@ -264,13 +297,13 @@ public class Frontend {
    if (end == 29)
      strEnd = "Gordens";
  
-  
+  // loop that calculates the shortest path, the cost, and adjacent vertices to the start vertex
   do {
     System.out.println("The Shortest Path from " + strStart + " to " + strEnd + " is:");
-    //System.out.println(getRoute(backend, strStart, strEnd));
+    System.out.println(getRoute(backend, strStart, strEnd));
     System.out.println("The cost of this Path is: " + getCost(backend, strStart, strEnd));
     System.out.println("The places adjacent to the current starting location are: ");
-   //System.out.println(adjacentNodes(backend, strStart));
+    System.out.println(adjacentNodes(backend, strStart));
     System.out.println("[1] Choose new locations");
     System.out.println("[2] Exit the program \n");
     
@@ -286,5 +319,4 @@ public class Frontend {
   } while (numLocations == 2);
   
   }
-  
 }
