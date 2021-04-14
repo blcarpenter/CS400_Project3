@@ -92,8 +92,8 @@ public class DataWangglerTests {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            Edge2 edge= (Edge2) list.get(0).destinationsLeaving().get(0);
-            String name = edge.target.getName();
+            Edge edge= list.get(0).destinationsLeaving().get(0);
+            String name = edge.target;
             assertEquals("E.Campus mall and johnson",name);
         }
 

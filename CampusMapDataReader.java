@@ -51,9 +51,9 @@ public class CampusMapDataReader implements CampusMapDataReaderInterface {
                 Destinations destinations = new Destinations(edgesLeaving,name);
                 helper.add(destinations);
             }
-            List<DestinationsInterface> helpe = helpLink(helper);
+//            List<DestinationsInterface> helpe = helpLink(helper);
 
-            return helpe;
+            return helper;
 
             // catches the exceptions
         } catch (FileNotFoundException e) {

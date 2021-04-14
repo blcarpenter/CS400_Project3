@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The Backend class stores location data provided in the command line arguments
@@ -19,8 +21,8 @@ import java.util.ArrayList;
 public class Backend {
 
     private CS400Graph<String> locationGraph;
-    public ArrayList<Destinations> locList;
-    
+    public List<Destinations> locList;
+
     // Constructor that stores location data obtained from command line arguments
     // in a CS400Graph
     Backend(File file) {
@@ -56,10 +58,10 @@ public class Backend {
 
     // Method that returns a String array representing the path from the starting
     // location to the destination, with the total cost stored in the final element
-    public String[] getRoute(String start, String end) {
+    public String getRoute(String start, String end) {
 
         String[] route = new String[50];
-        ArrayList<String> list = (ArrayList)this.locationGraph.shortestPath(start, end);
+        List<String> list = this.locationGraph.shortestPath(start, end);
 
         int count = 0;
 
@@ -70,31 +72,35 @@ public class Backend {
 
         // filler line for display purposes (optional)
         route[count++] = "";
-
-        Integer cost = this.locationGraph.getPathCost(start, end);
-        route[count] = "Total path cost: " + cost.toString();
-
-        return route;
+        String[] res = new String[count+1];
+        int i=0;
+        for(String s:route){
+            if(s!= null){
+                res[i]= s;
+                i++;
+            }
+        }
+        return Arrays.toString(res);
     }
-    
+
     public int getCost (String start, String end) {
-      Integer cost = this.locationGraph.getPathCost(start, end);
-      return cost;  
+        Integer cost = this.locationGraph.getPathCost(start, end);
+        return cost;
     }
-    
+
     public ArrayList<String> adjacentNodes(String data) {
-      ArrayList<String> list = new ArrayList<String>();
-      Destinations currentNode = null;
-      for(Destinations x: locList) {
-        if (x.getName().equals(data)) {
-          currentNode = x;
+        ArrayList<String> list = new ArrayList<String>();
+        Destinations currentNode = null;
+        for(Destinations x: locList) {
+            if (x.getName().equals(data)) {
+                currentNode = x;
+            }
         }
-      }
-      if (currentNode!=null) {
-        for (Edge x : currentNode.destinationsLeaving()) {
-          list.add(x.target);
+        if (currentNode!=null) {
+            for (Edge x : currentNode.destinationsLeaving()) {
+                list.add(x.target);
+            }
         }
-      } 
-     return list; 
-   }
+        return list;
+    }
 }
