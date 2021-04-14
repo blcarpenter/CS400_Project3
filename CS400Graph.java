@@ -100,8 +100,7 @@ public class CS400Graph<T> implements GraphADT<T> {
         Vertex sourceVertex = this.vertices.get(source);
         Vertex targetVertex = this.vertices.get(target);
         if(sourceVertex == null || targetVertex == null)
-            System.out.println(target);
-//            throw new IllegalArgumentException("Cannot add edge with vertices that do not exist");
+            throw new IllegalArgumentException("Cannot add edge with vertices that do not exist");
         if(weight < 0)
             throw new IllegalArgumentException("Cannot add edge with negative weight");
         // handle cases where edge already exists between these verticies
