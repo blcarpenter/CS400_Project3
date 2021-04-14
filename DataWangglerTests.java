@@ -28,6 +28,7 @@ public class DataWangglerTests {
         @Before
         public void setup(){
             this.reader = new CampusMapDataReader();
+
         }
         @Test
         /**
@@ -35,7 +36,7 @@ public class DataWangglerTests {
          */
         public void testReader1(){
             CampusMapDataReader reader = new CampusMapDataReader();
-            File f = new File("src/Madisonmap.csv");
+            File f = new File("Madisonmap.csv");
             FileReader reader1 = null;
             try {
                 reader1 = new FileReader(f);
