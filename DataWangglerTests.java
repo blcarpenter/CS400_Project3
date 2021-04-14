@@ -22,12 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DataWangglerTests {
         CampusMapDataReader reader;
 
+
         /**
          * sets up the instances of backend
          */
         @Before
         public void setup(){
             this.reader = new CampusMapDataReader();
+
 
         }
         @Test
@@ -58,7 +60,7 @@ public class DataWangglerTests {
         @Test
         public void testReader2() {
             CampusMapDataReader reader = new CampusMapDataReader();
-            File f = new File("src/Madisonmap.csv");
+            File f = new File("Madisonmap.csv");
             FileReader reader1 = null;
             try {
                 reader1 = new FileReader(f);
@@ -80,7 +82,7 @@ public class DataWangglerTests {
         @Test
         public void testReader3(){
             CampusMapDataReader reader = new CampusMapDataReader();
-            File f = new File("src/Madisonmap.csv");
+            File f = new File("Madisonmap.csv");
             FileReader reader1 = null;
             try {
                 reader1 = new FileReader(f);
